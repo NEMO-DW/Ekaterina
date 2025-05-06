@@ -72,5 +72,22 @@ body {
       transform: translateY(110vh);
       opacity: 0;
     }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    @keyframes rotate-reverse {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+    
+    .heart {
+      position: absolute;
+      top: -10vh;
+      animation-name: fall, rotate; /* default */
+      animation-timing-function: linear;
+      animation-iteration-count: 1, infinite;
+    }
   }
   
