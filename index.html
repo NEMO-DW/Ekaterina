@@ -19,14 +19,40 @@
       "Спасибо тебе за твою доброту и тепло.",
       "Ты — настоящее чудо в моей жизни.",
       "Пусть твоя улыбка никогда не гаснет.",
-      "Я благодарен за каждое мгновение с тобой. вапвапва варп варп ва пвр арпврап рврапрв рапрврапрварпрва"
+      "Я благодарен за каждое мгновение с тобой."
     ];
 
     const speed = 50;
-    let lineIndex = 0;
-    let charIndex = 0;
     const contentSpan = document.getElementById('content');
     const typewriter = document.getElementById('typewriter');
+    const container = document.querySelector('.text-container');
+
+    // 📏 Подготовим полный текст сразу
+    const fullText = lines.join('\n');
+    contentSpan.textContent = fullText;
+
+    // 📐 Рассчитаем масштаб
+    function scaleToFit() {
+      let scale = 1;
+      typewriter.style.transform = `scale(${scale})`;
+
+      while (
+        (typewriter.scrollWidth > container.clientWidth ||
+         typewriter.scrollHeight > container.clientHeight) &&
+        scale > 0.1
+      ) {
+        scale -= 0.01;
+        typewriter.style.transform = `scale(${scale})`;
+      }
+    }
+
+    scaleToFit(); // 📦 Масштабируем сразу
+
+    // ⏱ После масштабирования — очищаем и запускаем печатание
+    contentSpan.textContent = '';
+
+    let lineIndex = 0;
+    let charIndex = 0;
 
     function typeLine() {
       if (lineIndex >= lines.length) return;
@@ -35,32 +61,18 @@
       if (charIndex < currentLine.length) {
         contentSpan.textContent += currentLine[charIndex];
         charIndex++;
-        resizeToFit();
         setTimeout(typeLine, speed);
       } else {
         contentSpan.textContent += '\n';
         charIndex = 0;
         lineIndex++;
-        resizeToFit();
         setTimeout(typeLine, speed);
       }
     }
 
-    function resizeToFit() {
-      const container = document.querySelector('.text-container');
-      let scale = 1;
-      typewriter.style.transform = `scale(${scale})`;
+    setTimeout(typeLine, 500); // ⌛ Старт печатания
 
-      // Уменьшаем масштаб, если не помещается
-      while ((typewriter.scrollWidth > container.clientWidth || typewriter.scrollHeight > container.clientHeight) && scale > 0.3) {
-        scale -= 0.01;
-        typewriter.style.transform = `scale(${scale})`;
-      }
-    }
-
-    setTimeout(typeLine, 1000);
-
-    // 💖 Генерация сердечек
+    // 💖 Сердечки
     function createHeart() {
       const heart = document.createElement("img");
       heart.src = "img/heart2.png";
