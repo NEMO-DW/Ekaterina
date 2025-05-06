@@ -16,7 +16,7 @@ body {
   right: 5%;
   width: 90%;
   padding: 20px 0;
-  font-size: calc(14px + 1.2vw);
+  font-size: 3vw; /* Задаем размер шрифта как зависимый от ширины экрана */
   line-height: 1.6em;
   z-index: 2;
   text-align: left;
@@ -28,17 +28,16 @@ body {
   margin: 0;
   width: 100%;
   min-height: 60vh;
-  white-space: normal; /* Обеспечивает перенос строк */
-  word-wrap: break-word; /* Переносит длинные слова */
-  word-break: break-word; /* Обеспечивает перенос длинных слов */
-  overflow-wrap: anywhere; /* Позволяет переносить слова, которые выходят за пределы */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 #content {
   display: block;
   width: 100%;
   font-family: 'Courier New', monospace;
-  hyphens: auto;
 }
 
 .cursor {
