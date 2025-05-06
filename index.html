@@ -10,16 +10,16 @@
   <div class="hearts"></div>
 
   <div class="text-container">
-    <pre id="typewriter"><span id="content"></span><span class="cursor">|</span></pre>
+    <div id="typewriter"><span id="content"></span><span class="cursor">|</span></div>
   </div>
 
   <script>
-    const lines = [
-  "Дорогая, с Днём Рождения!",
-  "Спасибо тебе за твою доброту и тепло.",
-  "Ты — настоящее чудо в моей жизни.",
-  "Пусть твоя улыбка никогда не гаснет.",
-  "Я благодарен за каждое мгновение с тобой выаываываыв аываыва аыва ыв аыва ыв вы выа ыва ыв аы ва ыв аывраоы ваыв рарвыарывар ывра ыв арывроаывр аыв ароо ыварыварывапыв ариывоаир ывра иывавыираывиравыа"
+  const lines = [
+    "Дорогая, с Днём Рождения!",
+    "Спасибо тебе за твою доброту и тепло.",
+    "Ты — настоящее чудо в моей жизни.",
+    "Пусть твоя улыбка никогда не гаснет.",
+    "Я благодарен за каждое мгновение с тобой выаываываыв аываыва аыва ыв аыва ыв вы выа ыва ыв аы ва ыв аывраоы ваыв рарвыарывар ывра ыв арывроаывр аыв ароо ыварыварывапыв ариывоаир ывра иывавыираывиравыа"
   ];
   
   const speed = 50;
@@ -27,45 +27,12 @@
   let charIndex = 0;
   const contentSpan = document.getElementById('content');
   
-  function adjustFontSize() {
-    // Ищем самую длинную строку
-    const longestLine = lines.reduce((maxLine, line) => line.length > maxLine.length ? line : maxLine, "");
-  
-    // Получаем контейнер
-    const textContainer = document.querySelector('.text-container');
-    
-    // Получаем ширину контейнера
-    const containerWidth = textContainer.offsetWidth;
-  
-    // Создаем временный элемент, чтобы вычислить ширину самой длинной строки
-    const tempElement = document.createElement('span');
-    tempElement.style.visibility = 'hidden';
-    tempElement.style.position = 'absolute';
-    tempElement.style.whiteSpace = 'nowrap';
-    tempElement.textContent = longestLine;
-    document.body.appendChild(tempElement);
-  
-    // Вычисляем необходимый размер шрифта, чтобы строка вписалась в контейнер
-    const fontSize = containerWidth / tempElement.offsetWidth * 3; // Умножаем на 3 для масштаба шрифта
-  
-    // Применяем вычисленный размер шрифта
-    textContainer.style.fontSize = `${fontSize}px`;
-  
-    // Убираем временный элемент
-    document.body.removeChild(tempElement);
-  }
-  
-  // Функция для печати текста
   function typeLine() {
     if (lineIndex >= lines.length) return;
-  
+
     const currentLine = lines[lineIndex];
     if (charIndex < currentLine.length) {
       contentSpan.textContent += currentLine[charIndex];
-  
-      // Принудительная проверка макета
-      void contentSpan.offsetHeight;
-  
       charIndex++;
       setTimeout(typeLine, speed);
     } else {
@@ -75,12 +42,7 @@
       setTimeout(typeLine, speed);
     }
   }
-  
-  // Вызываем adjustFontSize перед началом печати, чтобы установить правильный размер шрифта
-  window.addEventListener('resize', adjustFontSize);
-  adjustFontSize();
-  setTimeout(typeLine, 1000);
-  
+
   // Генерация сердечек
   function createHeart() {
     const heart = document.createElement("img");
@@ -97,6 +59,8 @@
     setTimeout(() => heart.remove(), 7000);
   }
   
+  // Запуск анимаций
+  setTimeout(typeLine, 1000);
   setInterval(createHeart, 300);
   </script>
 </body>
