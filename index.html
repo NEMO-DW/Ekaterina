@@ -15,28 +15,57 @@
 
   <script>
     const lines = [
-      "Дорогая, с Днём Рождения!",
-      "Спасибо тебе за твою доброту и тепло.",
-      "Ты — настоящее чудо в моей жизни.",
-      "Пусть твоя улыбка никогда не гаснет.",
-      "Я благодарен за каждое мгновение с тобой выаываываыв аываыва аыва ыв аыва ыв аы"
-    ];
-
-    const speed = 50;
-    let lineIndex = 0;
-    let charIndex = 0;
-    const contentSpan = document.getElementById('content');
-
-    function typeLine() {
+  "Дорогая, с Днём Рождения!",
+  "Спасибо тебе за твою доброту и тепло.",
+  "Ты — настоящее чудо в моей жизни.",
+  "Пусть твоя улыбка никогда не гаснет.",
+  "Я благодарен за каждое мгновение с тобой выаываываыв аываыва аыва ыв аыва ыв"
+  ];
+  
+  const speed = 50;
+  let lineIndex = 0;
+  let charIndex = 0;
+  const contentSpan = document.getElementById('content');
+  
+  function adjustFontSize() {
+    // Ищем самую длинную строку
+    const longestLine = lines.reduce((maxLine, line) => line.length > maxLine.length ? line : maxLine, "");
+  
+    // Получаем контейнер
+    const textContainer = document.querySelector('.text-container');
+    
+    // Получаем ширину контейнера
+    const containerWidth = textContainer.offsetWidth;
+  
+    // Создаем временный элемент, чтобы вычислить ширину самой длинной строки
+    const tempElement = document.createElement('span');
+    tempElement.style.visibility = 'hidden';
+    tempElement.style.position = 'absolute';
+    tempElement.style.whiteSpace = 'nowrap';
+    tempElement.textContent = longestLine;
+    document.body.appendChild(tempElement);
+  
+    // Вычисляем необходимый размер шрифта, чтобы строка вписалась в контейнер
+    const fontSize = containerWidth / tempElement.offsetWidth * 3; // Умножаем на 3 для масштаба шрифта
+  
+    // Применяем вычисленный размер шрифта
+    textContainer.style.fontSize = `${fontSize}px`;
+  
+    // Убираем временный элемент
+    document.body.removeChild(tempElement);
+  }
+  
+  // Функция для печати текста
+  function typeLine() {
     if (lineIndex >= lines.length) return;
   
     const currentLine = lines[lineIndex];
     if (charIndex < currentLine.length) {
       contentSpan.textContent += currentLine[charIndex];
-      
+  
       // Принудительная проверка макета
       void contentSpan.offsetHeight;
-      
+  
       charIndex++;
       setTimeout(typeLine, speed);
     } else {
@@ -46,26 +75,29 @@
       setTimeout(typeLine, speed);
     }
   }
-
-    setTimeout(typeLine, 1000);
-
-    // Генерация сердечек
-    function createHeart() {
-      const heart = document.createElement("img");
-      heart.src = "img/heart2.png";
-      heart.className = "heart";
-
-      const baseSize = window.innerWidth < 768 ? 3 : 1.5;
-      const size = Math.random() * baseSize + baseSize;
-      heart.style.width = `${size}vw`;
-      heart.style.left = `${Math.random() * 100}%`;
-      heart.style.animationDuration = `${4 + Math.random() * 3}s`;
-
-      document.querySelector(".hearts").appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
-    }
-
-    setInterval(createHeart, 300);
+  
+  // Вызываем adjustFontSize перед началом печати, чтобы установить правильный размер шрифта
+  window.addEventListener('resize', adjustFontSize);
+  adjustFontSize();
+  setTimeout(typeLine, 1000);
+  
+  // Генерация сердечек
+  function createHeart() {
+    const heart = document.createElement("img");
+    heart.src = "img/heart2.png";
+    heart.className = "heart";
+  
+    const baseSize = window.innerWidth < 768 ? 3 : 1.5;
+    const size = Math.random() * baseSize + baseSize;
+    heart.style.width = `${size}vw`;
+    heart.style.left = `${Math.random() * 100}%`;
+    heart.style.animationDuration = `${4 + Math.random() * 3}s`;
+  
+    document.querySelector(".hearts").appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }
+  
+  setInterval(createHeart, 300);
   </script>
 </body>
 </html>
