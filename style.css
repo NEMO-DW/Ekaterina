@@ -24,23 +24,20 @@ body {
     overflow: hidden;
   }
   
-    #typewriter {
-      margin: 0;
-      width: 100%;
-      min-height: 60vh;
-      white-space: pre-wrap; /* Сохраняем переносы строк из кода */
-      word-wrap: break-word;
-      word-break: break-word; /* Универсальное решение для переносов */
-      overflow-wrap: anywhere; /* Современная альтернатива */
-      hyphens: auto; /* Автоматические переносы для поддерживающих браузеров */
-    }
-    
-    #content {
-      display: block;
-      width: 100%;
-      font-family: 'Courier New', monospace;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-    }
+  #typewriter {
+    margin: 0;
+    width: 100%;
+    min-height: 60vh;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  #content {
+    display: block;
+    width: 100%;
+    font-family: 'Courier New', monospace;
+  }
   
   .cursor {
     display: inline-block;
