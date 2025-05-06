@@ -10,7 +10,7 @@
   <!-- Экран с инструкцией -->
   <div class="screen" id="intro-screen">
     <div class="screen-content">
-      <h1>💌 Секретное письмо 💌</h1>
+      <h1>💌 Секретное письмо </h1>
       <p>Чтобы прочитать послание, собери 10 сердечек за 10 секунд!</p>
       <button onclick="startGame()" class="btn">Начать игру!</button>
     </div>
@@ -121,7 +121,7 @@
     });
 
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 2000);
+    setTimeout(() => heart.remove(), 500);
     setTimeout(createGameHeart, 500);
   }
 
