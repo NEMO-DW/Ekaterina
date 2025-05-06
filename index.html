@@ -47,21 +47,20 @@
 
     // 💖 Генерация сердечек
     function createHeart() {
-    const heart = document.createElement("img");
-    heart.src = "img/heart2.png";
-    heart.className = "heart";
+      const heart = document.createElement("img");
+      heart.src = "img/heart2.png";
+      heart.className = "heart";
 
-    const baseSize = window.innerWidth < 768 ? 3 : 1.5; // чуть крупнее на мобилках
-    const size = Math.random() * baseSize + baseSize; // от 1.5vw до 4.5vw
-    heart.style.width = `${size}vw`;
-    heart.style.left = `${Math.random() * 100}%`;
-    heart.style.animationDuration = `${4 + Math.random() * 3}s`;
+      const baseSize = window.innerWidth < 768 ? 4 : 2; // адаптивный размер
+      const size = Math.random() * baseSize + baseSize; // от 2vw до 6vw
+      heart.style.width = `${size}vw`;
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDuration = `${4 + Math.random() * 3}s`;
 
-    document.querySelector(".hearts").appendChild(heart);
+      document.querySelector(".hearts").appendChild(heart);
 
-    setTimeout(() => heart.remove(), 7000);
+      setTimeout(() => heart.remove(), 7000);
     }
-
 
     setInterval(createHeart, 300); // каждые 300мс новое сердце
   </script>
