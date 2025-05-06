@@ -1,82 +1,82 @@
 body {
-  margin: 0;
-  padding: 0;
-  background: #1e1e2f;
-  color: white;
-  font-family: 'Courier New', monospace;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
-
-.text-container {
-  position: absolute;
-  top: 10vh;
-  left: 5%;
-  right: 5%;
-  width: 90%;
-  padding: 20px 0;
-  font-size: 24px; /* Фиксированный размер шрифта */
-  line-height: 1.6em;
-  z-index: 2;
-  text-align: left;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-#typewriter {
-  margin: 0;
-  width: 100%;
-  min-height: 60vh;
-  white-space: pre-wrap; /* Перенос по словам */
-  word-break: break-word;
-  overflow-wrap: break-word;
-}
-
-#content {
-  display: block;
-  width: 100%;
-  font-family: 'Courier New', monospace;
-}
-
-.cursor {
-  display: inline-block;
-  width: 0.5em;
-  animation: blink 1s infinite;
-  vertical-align: top;
-}
-
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  50.01%, 100% { opacity: 0; }
-}
-
-.hearts {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.heart {
-  position: absolute;
-  top: -10vh;
-  animation-name: fall;
-  animation-timing-function: linear;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
+    margin: 0;
+    padding: 0;
+    background: #1e1e2f;
+    color: white;
+    font-family: 'Courier New', monospace;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
   }
-  80% {
-    opacity: 1;
+  
+  .text-container {
+    position: absolute;
+    top: 10vh;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+    padding: 20px 0;
+    font-size: 4vmin; /* Адаптивный размер на основе высоты экрана */
+    line-height: 1.6em;
+    z-index: 2;
+    text-align: left;
+    box-sizing: border-box;
+    overflow: hidden;
   }
-  100% {
-    transform: translateY(110vh);
-    opacity: 0;
+  
+  #typewriter {
+    margin: 0;
+    width: 100%;
+    min-height: 60vh;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
-}
+  
+  #content {
+    display: block;
+    width: 100%;
+    font-family: 'Courier New', monospace;
+  }
+  
+  .cursor {
+    display: inline-block;
+    width: 0.5em;
+    animation: blink 1s infinite;
+    vertical-align: top;
+  }
+  
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
+  }
+  
+  .hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .heart {
+    position: absolute;
+    top: -10vh;
+    animation-name: fall;
+    animation-timing-function: linear;
+  }
+  
+  @keyframes fall {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh);
+      opacity: 0;
+    }
+  }
