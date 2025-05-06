@@ -18,28 +18,27 @@ body {
   padding: 20px 0;
   font-size: calc(14px + 1.2vw);
   line-height: 1.6em;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
   z-index: 2;
   text-align: left;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 #typewriter {
   margin: 0;
   width: 100%;
   min-height: 60vh;
-  contain: content;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 #content {
-  display: inline-block;
+  display: block;
   width: 100%;
-  vertical-align: top;
-  white-space: pre-wrap;
-  word-break: break-word;
+  font-family: 'Courier New', monospace;
+  hyphens: auto;
 }
 
 .cursor {
