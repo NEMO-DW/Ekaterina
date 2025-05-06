@@ -60,34 +60,4 @@ body {
     animation-timing-function: linear;
   }
   
-  @keyframes fall {
-    0% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    80% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(110vh);
-      opacity: 0;
-    }
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    
-    @keyframes rotate-reverse {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(-360deg); }
-    }
-    
-    .heart {
-      position: absolute;
-      top: -10vh;
-      animation-name: fall, rotate; /* default */
-      animation-timing-function: linear;
-      animation-iteration-count: 1, infinite;
-    }
-  }
   
