@@ -28,10 +28,10 @@ body {
   margin: 0;
   width: 100%;
   min-height: 60vh;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  word-break: break-word;
-  overflow-wrap: anywhere;
+  white-space: normal; /* Обеспечивает перенос строк */
+  word-wrap: break-word; /* Переносит длинные слова */
+  word-break: break-word; /* Обеспечивает перенос длинных слов */
+  overflow-wrap: anywhere; /* Позволяет переносить слова, которые выходят за пределы */
 }
 
 #content {
