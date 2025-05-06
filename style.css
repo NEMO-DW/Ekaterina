@@ -16,7 +16,7 @@ body {
   right: 5%;
   width: 90%;
   padding: 20px 0;
-  font-size: 3vw; /* Задаем размер шрифта как зависимый от ширины экрана */
+  font-size: 24px; /* Фиксированный размер шрифта */
   line-height: 1.6em;
   z-index: 2;
   text-align: left;
@@ -28,9 +28,9 @@ body {
   margin: 0;
   width: 100%;
   min-height: 60vh;
-  word-wrap: break-word;
+  white-space: pre-wrap; /* Перенос по словам */
   word-break: break-word;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 #content {
