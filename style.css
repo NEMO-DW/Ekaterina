@@ -1,3 +1,4 @@
+/* Основные стили */
 body {
     margin: 0;
     padding: 0;
@@ -9,14 +10,93 @@ body {
     position: relative;
   }
   
+  /* Экранные окна */
+  .screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.5s;
+  }
+  
+  .screen-content {
+    text-align: center;
+    padding: 30px;
+    max-width: 500px;
+  }
+  
+  .screen h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #ff69b4;
+  }
+  
+  .screen p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+  
+  /* Кнопки */
+  .btn {
+    background: #ff69b4;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+  }
+  
+  .btn:hover {
+    background: #ff1493;
+    transform: scale(1.05);
+  }
+  
+  /* Игровой интерфейс */
+  .game-ui {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  .game-heart {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url('img/heart.png') no-repeat center/contain;
+    cursor: pointer;
+    transition: transform 0.3s;
+    animation: pulse 1s infinite;
+  }
+  
+  .game-heart:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Основное содержимое письма */
   .text-container {
     position: absolute;
-    top: 10vh;
+    top: 50%;
     left: 5%;
     right: 5%;
     width: 90%;
+    transform: translateY(-50%);
     padding: 20px 0;
-    font-size: 4vmin; /* Адаптивный размер на основе высоты экрана */
+    font-size: 4vmin;
     line-height: 1.6em;
     z-index: 2;
     text-align: left;
@@ -39,16 +119,40 @@ body {
     font-family: 'Courier New', monospace;
   }
   
-  .cursor {
-    display: inline-block;
-    width: 0.5em;
-    animation: blink 1s infinite;
-    vertical-align: top;
+  /* Анимации */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  @keyframes fall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0;
+    }
   }
   
   @keyframes blink {
     0%, 50% { opacity: 1; }
     50.01%, 100% { opacity: 0; }
+  }
+  
+  /* Дополнительные элементы */
+  .cursor {
+    display: inline-block;
+    width: 0.5em;
+    animation: blink 1s infinite;
+    vertical-align: top;
   }
   
   .hearts {
@@ -63,20 +167,10 @@ body {
   .heart {
     position: absolute;
     top: -10vh;
-    animation-name: fall;
-    animation-timing-function: linear;
+    animation: fall linear forwards;
   }
   
-  @keyframes fall {
-    0% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    80% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(110vh);
-      opacity: 0;
-    }
+  /* Вспомогательные классы */
+  .hidden {
+    display: none;
   }
