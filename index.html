@@ -19,13 +19,14 @@
       "Спасибо тебе за твою доброту и тепло.",
       "Ты — настоящее чудо в моей жизни.",
       "Пусть твоя улыбка никогда не гаснет.",
-      "Я благодарен за каждое мгновение с тобой выаваываыва  аываываы аыв аыв аыв аы ва"
+      "Я благодарен за каждое мгновение с тобой."
     ];
 
     const speed = 50;
     let lineIndex = 0;
     let charIndex = 0;
     const contentSpan = document.getElementById('content');
+    const typewriter = document.getElementById('typewriter');
 
     function typeLine() {
       if (lineIndex >= lines.length) return;
@@ -34,12 +35,26 @@
       if (charIndex < currentLine.length) {
         contentSpan.textContent += currentLine[charIndex];
         charIndex++;
+        resizeToFit();
         setTimeout(typeLine, speed);
       } else {
         contentSpan.textContent += '\n';
         charIndex = 0;
         lineIndex++;
+        resizeToFit();
         setTimeout(typeLine, speed);
+      }
+    }
+
+    function resizeToFit() {
+      const container = document.querySelector('.text-container');
+      let scale = 1;
+      typewriter.style.transform = `scale(${scale})`;
+
+      // Уменьшаем масштаб, если не помещается
+      while ((typewriter.scrollWidth > container.clientWidth || typewriter.scrollHeight > container.clientHeight) && scale > 0.3) {
+        scale -= 0.01;
+        typewriter.style.transform = `scale(${scale})`;
       }
     }
 
@@ -51,18 +66,17 @@
       heart.src = "img/heart2.png";
       heart.className = "heart";
 
-      const baseSize = window.innerWidth < 768 ? 4 : 2; // адаптивный размер
-      const size = Math.random() * baseSize + baseSize; // от 2vw до 6vw
+      const baseSize = window.innerWidth < 768 ? 4 : 2;
+      const size = Math.random() * baseSize + baseSize;
       heart.style.width = `${size}vw`;
       heart.style.left = `${Math.random() * 100}%`;
       heart.style.animationDuration = `${4 + Math.random() * 3}s`;
 
       document.querySelector(".hearts").appendChild(heart);
-
       setTimeout(() => heart.remove(), 7000);
     }
 
-    setInterval(createHeart, 300); // каждые 300мс новое сердце
+    setInterval(createHeart, 300);
   </script>
 </body>
 </html>
