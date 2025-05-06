@@ -4,7 +4,74 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>С Днём Рождения!</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #1e1e2f;
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .text-container {
+      width: 90vw;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #typewriter {
+      font-size: 4vw;
+      white-space: pre-wrap;
+      line-height: 1.4em;
+      transform-origin: top left;
+      max-width: 100%;
+      word-break: break-word;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 0.5em;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
+    }
+
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      top: -10vh;
+      animation-name: fall;
+      animation-timing-function: linear;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translateY(110vh); opacity: 0; }
+    }
+  </style>
 </head>
 <body>
   <div class="hearts"></div>
@@ -19,7 +86,7 @@
       "Спасибо тебе за твою доброту и тепло.",
       "Ты — настоящее чудо в моей жизни.",
       "Пусть твоя улыбка никогда не гаснет.",
-      "Я благодарен за каждое мгновение с тобой. ваыа  авыаы ва выа ываыв аыва ывв аы ва"
+      "Я благодарен за каждое мгновение с тобой выаываываыв аываыва аыва ыв аыва ыв аы"
     ];
 
     const speed = 50;
@@ -27,18 +94,21 @@
     const typewriter = document.getElementById('typewriter');
     const container = document.querySelector('.text-container');
 
-    // 📏 Подготовим полный текст сразу
+    // Шаг 1: Вставляем весь текст заранее для измерения
     const fullText = lines.join('\n');
     contentSpan.textContent = fullText;
 
-    // 📐 Рассчитаем масштаб
+    // Шаг 2: Масштабирование
     function scaleToFit() {
       let scale = 1;
       typewriter.style.transform = `scale(${scale})`;
 
+      const maxWidth = container.clientWidth;
+      const maxHeight = container.clientHeight;
+
       while (
-        (typewriter.scrollWidth > container.clientWidth ||
-         typewriter.scrollHeight > container.clientHeight) &&
+        (typewriter.scrollWidth > maxWidth ||
+         typewriter.scrollHeight > maxHeight) &&
         scale > 0.1
       ) {
         scale -= 0.01;
@@ -46,9 +116,9 @@
       }
     }
 
-    scaleToFit(); // 📦 Масштабируем сразу
+    scaleToFit(); // Подгонка до показа
 
-    // ⏱ После масштабирования — очищаем и запускаем печатание
+    // Шаг 3: Очищаем и запускаем анимацию печати
     contentSpan.textContent = '';
 
     let lineIndex = 0;
@@ -70,9 +140,9 @@
       }
     }
 
-    setTimeout(typeLine, 500); // ⌛ Старт печатания
+    setTimeout(typeLine, 500);
 
-    // 💖 Сердечки
+    // Сердечки
     function createHeart() {
       const heart = document.createElement("img");
       heart.src = "img/heart2.png";
