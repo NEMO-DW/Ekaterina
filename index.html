@@ -28,20 +28,24 @@
     const contentSpan = document.getElementById('content');
 
     function typeLine() {
-      if (lineIndex >= lines.length) return;
-
-      const currentLine = lines[lineIndex];
-      if (charIndex < currentLine.length) {
-        contentSpan.textContent += currentLine[charIndex];
-        charIndex++;
-        setTimeout(typeLine, speed);
-      } else {
-        contentSpan.textContent += '\n';
-        charIndex = 0;
-        lineIndex++;
-        setTimeout(typeLine, speed);
-      }
+    if (lineIndex >= lines.length) return;
+  
+    const currentLine = lines[lineIndex];
+    if (charIndex < currentLine.length) {
+      contentSpan.textContent += currentLine[charIndex];
+      
+      // Принудительная проверка макета
+      void contentSpan.offsetHeight;
+      
+      charIndex++;
+      setTimeout(typeLine, speed);
+    } else {
+      contentSpan.textContent += '\n';
+      charIndex = 0;
+      lineIndex++;
+      setTimeout(typeLine, speed);
     }
+  }
 
     setTimeout(typeLine, 1000);
 
