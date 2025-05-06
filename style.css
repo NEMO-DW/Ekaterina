@@ -12,14 +12,15 @@ body {
 .text-container {
   position: absolute;
   top: 10vh;
-  left: 5vw;
-  right: 5vw;
-  max-width: 90vw;
+  left: 0;
+  right: 0;
+  width: 100%;
   font-size: calc(14px + 1.2vw);
   line-height: 1.6em;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  white-space: nowrap; /* Предотвращаем перенос строк */
+  word-wrap: normal;   /* Слова не будут переноситься */
   z-index: 2;
+  text-align: center;  /* Центрируем текст по горизонтали */
 }
 
 .cursor {
