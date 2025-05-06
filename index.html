@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>С Днём Рождения!</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hearts"></div>
+
+  <div class="text-container">
+    <pre id="typewriter"><span id="content"></span><span class="cursor">|</span></pre>
+  </div>
+
+  <script>
+    const lines = [
+      "Дорогая, с Днём Рождения!",
+      "Спасибо тебе за твою доброту и тепло.",
+      "Ты — настоящее чудо в моей жизни.",
+      "Пусть твоя улыбка никогда не гаснет.",
+      "Я благодарен за каждое мгновение с тобой."
+    ];
+
+    const speed = 50;
+    let lineIndex = 0;
+    let charIndex = 0;
+    const contentSpan = document.getElementById('content');
+
+    function typeLine() {
+      if (lineIndex >= lines.length) return;
+
+      const currentLine = lines[lineIndex];
+      if (charIndex < currentLine.length) {
+        contentSpan.textContent += currentLine[charIndex];
+        charIndex++;
+        setTimeout(typeLine, speed);
+      } else {
+        contentSpan.textContent += '\n';
+        charIndex = 0;
+        lineIndex++;
+        setTimeout(typeLine, speed);
+      }
+    }
+
+    setTimeout(typeLine, 1000);
+
+    // 💖 Генерация сердечек
+    function createHeart() {
+    const heart = document.createElement("img");
+    heart.src = "img/heart2.png";
+    heart.className = "heart";
+
+    const baseSize = window.innerWidth < 768 ? 3 : 1.5; // чуть крупнее на мобилках
+    const size = Math.random() * baseSize + baseSize; // от 1.5vw до 4.5vw
+    heart.style.width = `${size}vw`;
+    heart.style.left = `${Math.random() * 100}%`;
+    heart.style.animationDuration = `${4 + Math.random() * 3}s`;
+
+    document.querySelector(".hearts").appendChild(heart);
+
+    setTimeout(() => heart.remove(), 7000);
+    }
+
+
+    setInterval(createHeart, 300); // каждые 300мс новое сердце
+  </script>
+</body>
+</html>
