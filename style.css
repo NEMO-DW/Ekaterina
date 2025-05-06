@@ -28,7 +28,6 @@ body {
   margin: 0;
   width: 100%;
   min-height: 60vh;
-  white-space: pre-wrap;
   word-wrap: break-word;
   word-break: break-word;
   overflow-wrap: anywhere;
